@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_CI"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16px"
+    android:orientation="vertical"
+    app:cardBackgroundColor="#009688"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="10dp"
+    app:contentPadding="36px">
+
+    <LinearLayout
+        android:id="@+id/card_LL_CI"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/quote_text_CI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/name_text_CI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#E0F2F1"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/delete_btn_CI"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:drawable/presence_busy" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
