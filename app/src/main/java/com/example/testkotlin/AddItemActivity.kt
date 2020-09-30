@@ -14,18 +14,19 @@ class AddItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_item)
 
         val data = intent.extras
-        val items = data?.getParcelableArrayList<CardData>("items")
-
+        var items: ArrayList<CardListData> = ArrayList()
+        if(data != null) items = data.getParcelableArrayList<CardListData>("items")!!
 
         val button = findViewById<Button>(R.id.button_ai)
         val additemEdittext = findViewById<EditText>(R.id.add_item_ai)
         button.setOnClickListener {
             val newTab = additemEdittext.text.toString()
             if(newTab.length > 0){
-                items?.add(CardData(newTab, ArrayList()))
+                items.add(CardListData(newTab, ArrayList()))
                 val intent = Intent(this, MainActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.putExtra("items", items)
+                intent.putExtra("position", items.size-1)
                 startActivity(intent)
             }
             else

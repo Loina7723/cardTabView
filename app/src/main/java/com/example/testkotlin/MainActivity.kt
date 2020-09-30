@@ -3,8 +3,8 @@ package com.example.testkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,13 +13,18 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
+    val TAG: String = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val items: ArrayList<CardData>
+        val items: ArrayList<CardListData>
         val bundle = intent.extras
-        if(bundle != null) items = bundle.getParcelableArrayList<CardData>("items")!!
+        var position: Int? = null
+        if(bundle != null){
+            items = bundle.getParcelableArrayList<CardListData>("items")!!
+            position = bundle.getInt("position")
+        }
         else items = setItems()
 
         val adapter = LocalAdapter(this)
@@ -43,9 +48,10 @@ class MainActivity : AppCompatActivity() {
                 super.onPageSelected(position)
                 val addBtn = findViewById<Button>(R.id.add_btn_main)
                 addBtn.setOnClickListener {
-                    items[position].data.add("new card")
-                    val page = adapter.pages[position] as ViewFragment3
-                    page.mAdapter?.notifyItemInserted(items[position].data.size-1)
+                    val intent = Intent(this@MainActivity, ScreenshotActivity::class.java)
+                    intent.putExtra("items", items)
+                    intent.putExtra("position", position)
+                    startActivity(intent)
                 }
             }
         })
@@ -53,23 +59,27 @@ class MainActivity : AppCompatActivity() {
         val addTabBtn = findViewById<Button>(R.id.addTab_btn_main)
         addTabBtn.setOnClickListener {
             val intent = Intent(this, AddItemActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.putExtra("items", items)
             startActivity(intent)
         }
+
+
+        if (position != null) viewPager.currentItem = position
     }
 
-    fun setItems(): ArrayList<CardData> {
-        val items: ArrayList<CardData> = ArrayList()
+    fun setItems(): ArrayList<CardListData> {
+        val items: ArrayList<CardListData> = ArrayList()
 
-        val data: ArrayList<String> = ArrayList()
-        data.add("a")
-        data.add("b")
-        items.add(CardData("First Cards", data))
+        val carddata: ArrayList<CardData> = ArrayList()
+        carddata.add(CardData(null,  "a", "a detail"))
+        carddata.add(CardData(null, "b", "b detail"))
+        items.add(CardListData("First Cards", carddata))
 
-        val data2: ArrayList<String> = ArrayList()
-        data2.add("c")
-        data2.add("d")
-        items.add(CardData("Second Cards", data2))
+        val carddata2: ArrayList<CardData> = ArrayList()
+        carddata2.add(CardData(null, "c", "c detail"))
+        carddata2.add(CardData(null, "d", "d detail"))
+        items.add(CardListData("Second Cards", carddata2))
 
         return items
     }
@@ -85,6 +95,15 @@ class MainActivity : AppCompatActivity() {
 
         fun addFragment(fragment: Fragment) {
             pages.add(fragment)
+        }
+    }
+
+    fun showItems(items: ArrayList<CardListData>){
+        for(item in items){
+            Log.d(TAG, item.title)
+            for(card in item.data){
+                Log.d(TAG, card.toString())
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cards_page.view.*
 
-class ViewFragment3(val mContext: Context, val data: ArrayList<String>) : Fragment() {
+class ViewFragment3(val mContext: Context, val data: ArrayList<CardData>) : Fragment() {
     var mAdapter: RecyclerView.Adapter<*>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

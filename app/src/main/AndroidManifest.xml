@@ -14,8 +14,11 @@
         <activity android:name=".viewPager.ViewPagerMain"/>
         <activity android:name=".passArray.FirstActivity"/>
         <activity android:name=".passArray.SecondActivity"/>
-        <activity android:name=".AddItemActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".screenshot.ScreenshotActivity2"/>
+        <activity android:name=".screenshot.CardActivity2"/>
+        <activity android:name=".ScreenshotActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".AddItemActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
