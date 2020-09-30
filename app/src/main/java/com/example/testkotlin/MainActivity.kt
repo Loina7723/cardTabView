@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout_main)
+        tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         TabLayoutMediator(tabLayout, viewPager, object : TabLayoutMediator.TabConfigurationStrategy {
             override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
                 tab.text = items[position].title

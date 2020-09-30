@@ -39,7 +39,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<String>) : RecyclerView.A
             cardview = itemView.cardview_CI
             cardContent = itemView.card_LL_CI
             quote = itemView.cardName_text_CI
-            name = itemView.weight_text_CI
+            name = itemView.volume_text_CI
             deleteBtn = itemView.delete_btn_CI
         }
     }

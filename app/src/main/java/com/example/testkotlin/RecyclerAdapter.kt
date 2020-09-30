@@ -29,7 +29,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
             holder.img.setImageBitmap(bmp)
         }
         holder.name.text = mDataList[position].card_name
-        holder.weight.text = mDataList[position].card_weight
+        holder.volume.text = mDataList[position].card_volume
         holder.deleteBtn.setOnClickListener{
             mDataList.removeAt(position)
             notifyItemRemoved(position)
@@ -41,7 +41,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
         internal var cardContent: LinearLayout
         internal var img: ImageView
         internal var name: TextView
-        internal var weight: TextView
+        internal var volume: TextView
         internal var content: TextView
         internal var deleteBtn: Button
 
@@ -50,7 +50,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
             cardContent = itemView.card_LL_CI
             img = itemView.img_CI
             name = itemView.cardName_text_CI
-            weight = itemView.weight_text_CI
+            volume = itemView.volume_text_CI
             content = itemView.content_text_CI
             deleteBtn = itemView.delete_btn_CI
         }
