@@ -2,13 +2,11 @@ package com.example.testkotlin
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_item.view.*
@@ -30,6 +28,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
         }
         holder.name.text = mDataList[position].card_name
         holder.volume.text = mDataList[position].card_volume
+        holder.volumeEdit.text = Editable.Factory.getInstance().newEditable(mDataList[position].card_volume)
         holder.deleteBtn.setOnClickListener{
             mDataList.removeAt(position)
             notifyItemRemoved(position)
@@ -42,6 +41,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
         internal var img: ImageView
         internal var name: TextView
         internal var volume: TextView
+        internal var volumeEdit: EditText
         internal var content: TextView
         internal var deleteBtn: Button
 
@@ -51,6 +51,7 @@ class RecyclerAdapter(private val mDataList: ArrayList<CardData>) : RecyclerView
             img = itemView.img_CI
             name = itemView.cardName_text_CI
             volume = itemView.volume_text_CI
+            volumeEdit = itemView.volume_edit_CI
             content = itemView.content_text_CI
             deleteBtn = itemView.delete_btn_CI
         }
